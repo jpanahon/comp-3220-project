@@ -16,7 +16,7 @@ with open("schema.sql") as f:
 
 
 # Read data from the Arenas.csv file and insert it into the arenas table
-with open("Community_Centres.csv", newline="") as csvfile:
+with open("Arenas.csv", newline="") as csvfile:
     csv_reader = csv.reader(csvfile)
     next(csv_reader)  # Skip header row if present
     arenas = [
