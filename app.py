@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# run: cd Testing, export flask_app=testapp.py, flask run
+# run: cd comp-3220-project-main, export flask_app=testapp.py, flask run
 
 
 def get_db_connection():
