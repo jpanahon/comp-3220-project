@@ -16,10 +16,7 @@ def get_db_connection():
 # open index template
 @app.route("/")
 def index():
-    # conn = get_db_connection()
-    # arenas = conn.execute("SELECT * FROM arenas").fetchall()
-    # conn.close()
-    return render_template("index.html")  # , arenas=arenas)
+    return render_template("index.html") 
 
 
 @app.route("/arenas")
