@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS arenas;
 
 CREATE TABLE arenas (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     company TEXT NOT NULL,
     street TEXT NOT NULL,
     latitude FLOAT NOT NULL,
