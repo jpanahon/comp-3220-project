@@ -1,10 +1,18 @@
 <!--
 @author: Lena Al Shehmany
+@author: Mishal Siddiqui
 
 -->
 
 {% extends 'base.html' %} {%block head%}
+<head>
 <title>3220 Project Phase</title>
+<script src="map.js" charset = "utf"></script> <!--script for google maps function-->
+</head>
+
+
+<title>3220 Project Phase</title>
+<script src="map.js" charset = "utf"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 {%endblock%} {% block content %}
 <header>
@@ -36,8 +44,9 @@
         name="postalCode"
         pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d"
         required
-        title="Enter a valid postal code in the format 'ANA NAN'"
-      />
+        title="Enter a valid postal code in the format 'ANA NAN'"/>
+        <!--defer makes the script execute after the page is done parsing-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initService&libraries=places&v=weekly"defer></script>
       <button type="submit">Submit</button>
     </form>
   </div>

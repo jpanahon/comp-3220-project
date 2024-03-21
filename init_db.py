@@ -14,18 +14,27 @@ cur = connection.cursor()
 with open("schema.sql") as f:
     connection.executescript(f.read())
 
-
-# Read data from the Arenas.csv file and insert it into the arenas table
-with open("Arenas.csv", newline="") as csvfile:
-    csv_reader = csv.reader(csvfile)
-    next(csv_reader)  # Skip header row if present
-    arenas = [
-        (row[0], row[1], row[2], float(row[3]), float(row[4])) for row in csv_reader
-    ]
-    cur.executemany(
-        "INSERT INTO arenas (id, street, company, latitude, longitude) VALUES (?, ?, ?, ?, ?)",
-        arenas,
-    )
+# Insert data into the arenas table
+arenas_data = [
+    (
+        "Capri Pizzeria Recreation Complex",
+        "2555 Pulford St",
+        -83.035508601000004,
+        42.257920385500000,
+    ),
+    ("Adie Knox Arena", "1551 Wyandotte St W", -83.053128283700005, 42.306827924600000),
+    (
+        "Forest Glade Arena,3205",
+        "Forest Glade Dr",
+        -82.915097188900006,
+        42.304214234200003,
+    ),
+    ("WFCU Centre", "8787 McHugh St", -82.927632092600007, 42.318733580800000),
+]
+cur.executemany(
+    "INSERT INTO arenas (company, street, latitude, longitude) VALUES (?, ?, ?, ?)",
+    arenas_data,
+)
 
 # Read data from the Parks Centroids.csv file and insert it into the parks table
 with open("Parks Centroids.csv", newline="") as csvfile:

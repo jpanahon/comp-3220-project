@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# run: cd comp-3220-project-main, export flask_app=testapp.py, flask run
+# run: cd Testing, export flask_app=testapp.py, flask run
 
 
 def get_db_connection():
@@ -16,7 +16,10 @@ def get_db_connection():
 # open index template
 @app.route("/")
 def index():
-    return render_template("index.html") 
+    # conn = get_db_connection()
+    # arenas = conn.execute("SELECT * FROM arenas").fetchall()
+    # conn.close()
+    return render_template("index.html")  # , arenas=arenas)
 
 
 @app.route("/arenas")
