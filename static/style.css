@@ -10,6 +10,9 @@ body {
     box-sizing: border-box;
     background-color: #e1f3ff;
     font-weight: 300;
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
 }
 
 header{
@@ -131,3 +134,12 @@ form{
     left:2%;
 }
 
+footer {
+    margin-top: auto; 
+    background-color: #1D5D9B;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}

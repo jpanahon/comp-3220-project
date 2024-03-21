@@ -1,5 +1,5 @@
 <!--
-@author: Lena Al Shehmany
+@author: Lena Al Shehmany, Henok
 
 -->
 
@@ -7,19 +7,17 @@
 <title>Fire</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
 {%endblock%} {%block content%} {%endblock%} {%block more%}
+<div class="content-container">  
+        <h1>Fire Stations</h1>
+        <div id="previous">
+            <a href="{{ url_for('index')}}">&lArr;</a> </div>
+            {% for element in fire %}
+            <div class="container">
+                <h3>{{ element['id'] }} {{ element['names'] }}</h3>
+                <p>{{ element['street']}}</p>
+                <a href="/map?type=centre&id={{ element['id'] }}">View on Map</a> 
+            </div>
+        {% endfor %} 
+    </div> 
+{% endblock %} 
 
-<h1>Fire</h1>
-
-<!--Back to previous page button-->
-<div id="previous">
-  <a href="{{ url_for('index')}}">&lArr;</a>
-</div>
-
-{% for element in fire %}
-
-<div class="container">
-  <h3>{{ element['id'] }} {{ element['names'] }}</h3>
-  <p>{{ element['street']}}</p>
-  <a href="/map?type=fire&id={{ element['id'] }}">View on Map</a> 
-</div>
-{% endfor %} {%endblock%}

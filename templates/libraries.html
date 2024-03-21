@@ -1,5 +1,5 @@
 <!--
-@author: Lena Al Shehmany
+@author: Lena Al Shehmany, Henok
 
 -->
 
@@ -8,23 +8,20 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
 {%endblock%} {%block content%} {%endblock%} {%block more%}
 
-<h1>Libraries</h1>
-
-<!--Back to previous page button-->
-<div id="previous">
-  <a href="{{ url_for('index')}}">&lArr;</a>
-</div>
-
-{% for element in libraries %}
-
-<div class="container">
-  <h3>{{ element['names'] }}</h3>
-  <p>{{ element['street']}}</p>
-  <a href="{{element['link']}}" alt="link to library site">link</a>
-  <br><a href="/map?type=library&id={{ element['id'] }}">View on Map</a> 
-</div>
-{% endfor %} {%endblock%}
-
+<div class="content-container">  
+        <h1>Libraries</h1>
+        <!--Back to previous page button-->
+        <div id="previous">
+            <a href="{{ url_for('index')}}">&lArr;</a> </div>
+            {% for element in libraries %}
+            <div class="container">
+                <h3>{{ element['id'] }} {{ element['names'] }}</h3>
+                <p>{{ element['street']}}</p>
+                <a href="/map?type=centre&id={{ element['id'] }}">View on Map</a> 
+            </div>
+        {% endfor %} 
+    </div> 
+{% endblock %} 
 
 
 
