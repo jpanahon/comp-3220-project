@@ -7,7 +7,7 @@
       <a href="{{ url_for('index')}}">&lArr;</a>
     </div>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF83GSOntI236w6HIWa_wCPU50m9cYMnA&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF83GSOntI236w6HIWa_wCPU50m9cYMnA&loading=async&region=CA&callback=initMap">
     </script>
     <script>
     function initMap() {
@@ -25,7 +25,10 @@
                     });
 
                     const geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({'address': locationData.address}, function(results, status) {
+                    geocoder.geocode({'address': locationData.address,
+                                      'componentRestrictions': { 'country': 'CA'}}, 
+                                       function(results, status) {
+                                        
                         if (status === 'OK') {
                             map.setCenter(results[0].geometry.location);
                             new google.maps.Marker({
