@@ -20,5 +20,6 @@
 <div class="container">
   <h3>{{ element['company'] }}</h3>
   <p>{{ element['street']}}</p>
+  <a href="/map?type=garbage&id={{ element['id'] }}">View on Map</a> 
 </div>
 {% endfor %} {%endblock%}
