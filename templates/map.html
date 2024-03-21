@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Map View</h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
+    <div id="map" style="height: 500px"></div> 
+    <div id="previous">
+      <a href="{{ url_for('index')}}">&lArr;</a>
+    </div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF83GSOntI236w6HIWa_wCPU50m9cYMnA&loading=async&region=CA&callback=initMap">
+    </script>
+    <script>
+    function initMap() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const locationType = urlParams.get('type'); 
+            const locationId = urlParams.get('id');
+
+            fetch(`/get_location?type=${locationType}&id=${locationId}`)
+                .then(response => response.json())
+                .then(locationData => {
+                    const defaultCenter = { lat: 42.3149, lng: -83.0364 }; 
+                    const map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: defaultCenter
+                    });
+
+                    const geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({'address': locationData.address,
+                                      'componentRestrictions': { 'country': 'CA'}}, 
+                                       function(results, status) {
+                                        
+                        if (status === 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                            new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                        } else {
+                            console.error('Geocode failed: ' + status);
+                        }
+                    });
+                });
+        }
+    </script>
+{% endblock %}

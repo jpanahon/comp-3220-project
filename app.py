@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request 
 
 
 app = Flask(__name__)
@@ -65,3 +65,42 @@ def hospitals():
     hospitals = conn.execute("SELECT * FROM hospitals").fetchall()
     conn.close()
     return render_template("hospitals.html", hospitals=hospitals)
+
+
+@app.route("/map")
+def map():
+    return render_template("map.html")
+
+@app.route('/get_location')
+def get_location():
+    location_type = request.args.get('type')
+    location_id = request.args.get('id')
+    jsonify()
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    if location_type == 'library':
+        cursor.execute("SELECT street FROM libraries WHERE id=?", (location_id,))
+    elif location_type == 'park':
+        cursor.execute("SELECT street FROM parks WHERE id=?", (location_id,))
+    elif location_type == 'bus':
+        cursor.execute("SELECT street FROM bus WHERE id=?", (location_id,))
+    elif location_type == 'fire':
+        cursor.execute("SELECT street FROM fire WHERE id=?", (location_id,))
+    elif location_type == 'centre':
+        cursor.execute("SELECT street FROM centres WHERE id=?", (location_id,))
+    elif location_type == 'arena':
+        cursor.execute("SELECT street FROM arenas WHERE id=?", (location_id,))
+    elif location_type == 'hospital':
+        cursor.execute("SELECT street FROM hospitals WHERE id=?", (location_id,))
+    else:
+        return jsonify({'error': 'Invalid location type'}), 400 
+
+    result = cursor.fetchone()
+    conn.close()
+
+    if result:
+        return jsonify({'address': result['street']})  
+    else:
+        return jsonify({'error': 'Location not found'}), 404  

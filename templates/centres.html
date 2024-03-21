@@ -20,5 +20,6 @@
 <div class="container">
   <h3>{{ element['id'] }} {{ element['names'] }}</h3>
   <p>{{ element['street']}}</p>
+  <a href="/map?type=centre&id={{ element['id'] }}">View on Map</a> 
 </div>
 {% endfor %} {%endblock%}
