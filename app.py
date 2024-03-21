@@ -80,21 +80,29 @@ def get_location():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    if location_type == 'library':
-        cursor.execute("SELECT street FROM libraries WHERE id=?", (location_id,))
-    elif location_type == 'park':
-        cursor.execute("SELECT street FROM parks WHERE id=?", (location_id,))
-    elif location_type == 'bus':
-        cursor.execute("SELECT street FROM bus WHERE id=?", (location_id,))
-    elif location_type == 'fire':
-        cursor.execute("SELECT street FROM fire WHERE id=?", (location_id,))
-    elif location_type == 'centre':
-        cursor.execute("SELECT street FROM centres WHERE id=?", (location_id,))
-    elif location_type == 'arena':
-        cursor.execute("SELECT street FROM arenas WHERE id=?", (location_id,))
-    elif location_type == 'hospital':
-        cursor.execute("SELECT street FROM hospitals WHERE id=?", (location_id,))
-    else:
+    location_type_index = {"library": "libraries", "park": "parks", 
+                           "bus": "bus", "fire": "fire", "centre": "centres", 
+                           "arena": "arenas", "hospital": "hospitals"}
+    # if location_type == 'library':
+    #     cursor.execute("SELECT street FROM libraries WHERE id=?", (location_id,))
+    # elif location_type == 'park':
+    #     cursor.execute("SELECT street FROM parks WHERE id=?", (location_id,))
+    # elif location_type == 'bus':
+    #     cursor.execute("SELECT street FROM bus WHERE id=?", (location_id,))
+    # elif location_type == 'fire':
+    #     cursor.execute("SELECT street FROM fire WHERE id=?", (location_id,))
+    # elif location_type == 'centre':
+    #     cursor.execute("SELECT street FROM centres WHERE id=?", (location_id,))
+    # elif location_type == 'arena':
+    #     cursor.execute("SELECT street FROM arenas WHERE id=?", (location_id,))
+    # elif location_type == 'hospital':
+    #     cursor.execute("SELECT street FROM hospitals WHERE id=?", (location_id,))
+    # else:
+    #     return jsonify({'error': 'Invalid location type'}), 400 
+
+    try:
+        cursor.execute("SELECT street FROM ? WHERE id=?", (location_type_index[location_type], location_id,))
+    except Exception:
         return jsonify({'error': 'Invalid location type'}), 400 
 
     result = cursor.fetchone()
