@@ -88,10 +88,12 @@ def get_location():
         cursor.execute("SELECT street FROM bus WHERE id=?", (location_id,))
     elif location_type == 'fire':
         cursor.execute("SELECT street FROM fire WHERE id=?", (location_id,))
-    elif location_type == 'center':
-        cursor.execute("SELECT street FROM centers WHERE id=?", (location_id,))
+    elif location_type == 'centre':
+        cursor.execute("SELECT street FROM centres WHERE id=?", (location_id,))
     elif location_type == 'arena':
         cursor.execute("SELECT street FROM arenas WHERE id=?", (location_id,))
+    elif location_type == 'hospital':
+        cursor.execute("SELECT street FROM hospitals WHERE id=?", (location_id,))
     else:
         return jsonify({'error': 'Invalid location type'}), 400 
 
