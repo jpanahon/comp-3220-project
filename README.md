@@ -14,11 +14,18 @@ cd comp-3220-project
 flask run
 ```
 
-app.py - Main entry point of the website
-tools/parser.py - Downloads data and passes it off to the data handler class
-tools/data_handler.py - Sorts the data and put it into the database
-tools/init_db.py - Initializes the database
-tools/schema.sql - Initializes the tables of the database
-templates - Folder that consists of the HTML files for the front end
-static - Folder that consists of the CSS and image files for the front end
-data - Folder that consists of subfolders that hold the data used for the database
+`app.py` - Main entry point of the website
+
+`tools/parser.py` - Downloads data and passes it off to the data handler class
+
+`tools/data_handler.py` - Sorts the data and put it into the database
+
+`tools/init_db.py` - Initializes the database
+
+`tools/schema.sql` - Initializes the tables of the database
+
+`templates` - Folder that consists of the HTML files for the front end
+
+`static` - Folder that consists of the CSS and image files for the front end
+
+`data` - Folder that consists of subfolders that hold the data used for the database
